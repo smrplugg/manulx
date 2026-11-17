@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "manulx"
+version = "1.1.0"
+description = "Modular SSTV-like protocol for sending images over audio"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+dependencies = ["numpy", "scipy", "pillow"]
+keywords = ["sstv", "audio", "image", "modem", "ham radio"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Topic :: Communications :: Ham Radio",
+    "Topic :: Multimedia :: Sound/Audio",
+]
+
+[project.optional-dependencies]
+formats = ["soundfile"]
+
+[project.scripts]
+manulx = "manulx.cli:main"
+
+[tool.hatch.build.targets.sdist]
+include = ["src/manulx", "README.md", "README.ru.md", "PROTOCOL.md", "PROTOCOL.ru.md", "LICENSE", "pyproject.toml"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/manulx"]
